@@ -66,7 +66,7 @@ class Polygon(Shape):
         raise NotImplemented
 
 
-class Rectangle(Shape):
+class Rectangle(Polygon):
     def __init__(self, topRight, bottomLeft):
         self.topRight = topRight
         self.bottomLeft = bottomLeft
@@ -83,6 +83,7 @@ class Rectangle(Shape):
 class Square(Rectangle):
     def __init__(self, topRight, side):
         self.topRight = topRight
+        self.bottomLeft = (topRight[0]-side[0], topRight[0]-side[0])
         self.height = side[0]
         self.width = self.height
 

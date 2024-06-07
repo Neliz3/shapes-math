@@ -17,6 +17,13 @@ class TestSquare:
     def test_area(self, topRight, side, expected):
         assert Square(topRight, side).area == expected
 
+    def test_square_as_rectangle(self):
+        square = Square((4, 4), (4,))
+        assert square.topRight == (4,4)
+        assert square.bottomLeft == (0,0)
+        assert square.width ==  4
+        assert square.height ==  4
+
 
 
 class TestRectangle:
