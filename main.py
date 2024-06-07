@@ -43,7 +43,7 @@ def get_shape(possible_shapes: dict) -> Shape:
 def main():
     while True:
         shape = get_shape(SHAPES)
-        result = f'{shape.__class__.__name__} Perimeter: {shape.perimeter()} Area: {shape.area()}\n\n'
+        result = f'{shape.__class__.__name__} Perimeter: {shape.get_perimeter()} Area: {shape.get_area()}\n\n'
         print(result)
 
 

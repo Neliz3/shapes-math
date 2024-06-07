@@ -27,12 +27,22 @@ class Shape(ABC):
         pass
 
     @abstractmethod
-    def perimeter(self):
+    def get_perimeter(self):
         pass
 
     @abstractmethod
-    def area(self):
+    def get_area(self):
         pass
+
+
+    @property
+    def perimeter(self):
+        return self.get_perimeter()
+
+    @property
+    def area(self):
+        return self.get_area()
+
 
     def __str__(self):
         return ', '.join(SHAPES)
@@ -45,10 +55,10 @@ class Rectangle(Shape):
         self.width = topRight[0] - bottomLeft[0]
         self.height = topRight[1] - bottomLeft[1]
 
-    def perimeter(self):
+    def get_perimeter(self):
         return 2 * (self.width + self.height)
 
-    def area(self):
+    def get_area(self):
         return self.width * self.height
 
 
@@ -64,10 +74,10 @@ class Circle(Shape):
         self.center = center
         self.radius = radius[0]
 
-    def perimeter(self):
+    def get_perimeter(self):
         return circle_perimeter(self.radius)
 
-    def area(self):
+    def get_area(self):
         return circle_area(self.radius)
 
 
@@ -80,8 +90,8 @@ class Triangle(Shape):
         self.side2 = distance_two_points(point2, point3)
         self.side3 = distance_two_points(point3, point1)
 
-    def perimeter(self):
+    def get_perimeter(self):
         return self.side1 + self.side2 + self.side3
 
-    def area(self):
+    def get_area(self):
         return triangle_area(self.p1, self.p2, self.p3)
