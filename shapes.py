@@ -14,6 +14,7 @@ SHAPES = {
     'Rectangle': ('TopRight', 'BottomLeft'),
     'Circle': ('Center', 'Radius'),
     'Triangle': ('Point1', 'Point2', 'Point3'),
+    'Polygon': ('Point1', 'Point2', 'Point3'),
 }
 
 
@@ -34,6 +35,7 @@ class Shape(ABC):
     def get_area(self):
         pass
 
+# TODO: property
 
     @property
     def perimeter(self):
@@ -46,6 +48,22 @@ class Shape(ABC):
 
     def __str__(self):
         return ', '.join(SHAPES)
+
+
+class Polygon(Shape):
+    def __init__(self, point1, point2, point3):
+        self.p1 = point1
+        self.p2 = point2
+        self.p3 = point3
+        self.side1 = distance_two_points(point1, point2)
+        self.side2 = distance_two_points(point2, point3)
+        self.side3 = distance_two_points(point3, point1)
+
+    def get_perimeter(self):
+        return self.side1 + self.side2 + self.side3
+
+    def get_area(self):
+        raise NotImplemented
 
 
 class Rectangle(Shape):
@@ -81,17 +99,6 @@ class Circle(Shape):
         return circle_area(self.radius)
 
 
-class Triangle(Shape):
-    def __init__(self, point1, point2, point3):
-        self.p1 = point1
-        self.p2 = point2
-        self.p3 = point3
-        self.side1 = distance_two_points(point1, point2)
-        self.side2 = distance_two_points(point2, point3)
-        self.side3 = distance_two_points(point3, point1)
-
-    def get_perimeter(self):
-        return self.side1 + self.side2 + self.side3
-
+class Triangle(Polygon):
     def get_area(self):
         return triangle_area(self.p1, self.p2, self.p3)
